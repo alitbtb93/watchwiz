@@ -3,13 +3,13 @@ import { onMounted, ref } from 'vue';
 import { getShowInfo, getShowCast } from '@/api/publicApi';
 import type { Show, ShowCast } from '@/api/types';
 import { formatDate } from '@/utils/formatDate';
-import ShowGenreLabel from '@/components/common/ShowGenreLabel.vue';
-import AppSlider from '@/components/app/AppSlider.vue';
+import BaseGenreLabel from '@/components/base/BaseGenreLabel.vue';
+import BaseSlider from '@/components/base/BaseSlider.vue';
 import { SwiperSlide } from 'swiper/vue';
 import ShowDetailsCast from '@/components/pages/showDetails/ShowDetailsCast.vue';
 import { StarIcon } from '@heroicons/vue/24/solid';
-import ImageLoader from '@/components/base/ImageLoader.vue';
-import LoadingData from '@/components/base/LoadingData.vue';
+import BaseImageLoader from '@/components/base/BaseImageLoader.vue';
+import BaseLoadingData from '@/components/base/BaseLoadingData.vue';
 import BaseError from '@/components/base/BaseError.vue';
 
 const props = defineProps<{
@@ -48,10 +48,10 @@ async function getDetails(id: string) {
     <BaseError v-if="errorMessage">
       {{ errorMessage }}
     </BaseError>
-    <LoadingData v-if="isLoading" class="mx-auto mt-20 w-16" />
+    <BaseLoadingData v-if="isLoading" class="mx-auto mt-20 w-16" />
     <template v-else>
       <div class="flex flex-col gap-y-8 md:flex-row md:gap-x-8">
-        <ImageLoader
+        <BaseImageLoader
           :src="showInfo?.image?.original"
           :alt="showInfo?.name"
           class="w-60 flex-shrink-0 rounded-md md:w-1/3 lg:w-1/4"
@@ -69,7 +69,7 @@ async function getDetails(id: string) {
             </div>
           </div>
           <div class="flex gap-x-2">
-            <ShowGenreLabel
+            <BaseGenreLabel
               v-for="(genre, index) in showInfo?.genres"
               :key="index"
               :genre="genre"
@@ -78,7 +78,7 @@ async function getDetails(id: string) {
           <span class="mt-10 text-base text-white" v-html="showInfo?.summary"></span>
         </div>
       </div>
-      <AppSlider
+      <BaseSlider
         :title="`Cast of ${showInfo?.name}`"
         :sliderOptions="{
           slidesPerView: 3,
@@ -95,7 +95,7 @@ async function getDetails(id: string) {
         <SwiperSlide v-for="(item, index) in showCast" :key="index" :virtualIndex="index">
           <ShowDetailsCast :item="item" />
         </SwiperSlide>
-      </AppSlider>
+      </BaseSlider>
     </template>
   </section>
 </template>

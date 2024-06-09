@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import ShowCard from '@/components/common/ShowCard.vue';
+import BaseCard from '@/components/base/BaseCard.vue';
 import { searchShow } from '@/api/publicApi';
 import type { SearchResult } from '@/api/types';
-import NoResult from '@/components/pages/searchResult/NoResult.vue';
-import LoadingData from '@/components/base/LoadingData.vue';
+import SearchNoResult from '@/components/pages/search/SearchNoResult.vue';
+import BaseLoadingData from '@/components/base/BaseLoadingData.vue';
 import { useInfiniteScroll } from '@/composables/useInfiniteScroll';
 import BaseError from '@/components/base/BaseError.vue';
 
@@ -55,7 +55,7 @@ async function searchShows(query: string) {
     <BaseError v-if="errorMessage">
       {{ errorMessage }}
     </BaseError>
-    <LoadingData v-if="loading" class="mx-auto w-12" />
+    <BaseLoadingData v-if="loading" class="mx-auto w-12" />
     <div
       v-else-if="showResults.length"
       class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5"
@@ -65,10 +65,10 @@ async function searchShows(query: string) {
         :key="show.id"
         :to="`/details/${show.id}`"
       >
-        <ShowCard :show="show" />
+        <BaseCard :show="show" />
       </RouterLink>
     </div>
-    <NoResult v-else />
+    <SearchNoResult v-else />
     <div ref="endOfScroll"></div>
   </section>
 </template>

@@ -2,8 +2,8 @@
 import type { Show } from '@/api/types';
 import { StarIcon } from '@heroicons/vue/24/solid';
 import { formatDate } from '@/utils/formatDate';
-import ShowGenreLabel from './ShowGenreLabel.vue';
-import ImageLoader from '../base/ImageLoader.vue';
+import BaseGenreLabel from './BaseGenreLabel.vue';
+import BaseImageLoader from '../base/BaseImageLoader.vue';
 
 defineProps<{
   show: Show;
@@ -12,7 +12,7 @@ defineProps<{
 
 <template>
   <div class="group relative h-full w-full select-none overflow-hidden rounded-md">
-    <ImageLoader
+    <BaseImageLoader
       :src="show.image?.medium"
       :alt="show.name"
       class="transition duration-300 group-hover:scale-105"
@@ -31,7 +31,7 @@ defineProps<{
         </div>
       </div>
       <div class="hidden flex-wrap gap-2 md:flex">
-        <ShowGenreLabel v-for="(genre, index) in show.genres" :key="index" :genre="genre" />
+        <BaseGenreLabel v-for="(genre, index) in show.genres" :key="index" :genre="genre" />
       </div>
     </div>
   </div>
