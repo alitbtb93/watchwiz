@@ -35,8 +35,8 @@ async function getDetails(id: string) {
 
 <template>
   <section class="mx-auto max-w-screen-2xl px-4 py-16">
-    <div class="flex gap-x-16">
-      <img :src="showInfo?.image?.original" alt="" class="w-1/4 rounded-md" />
+    <div class="flex flex-col gap-y-8 md:flex-row md:gap-x-8">
+      <img :src="showInfo?.image?.original" alt="" class="w-60 rounded-md md:w-1/3 lg:w-1/4" />
       <div class="flex flex-grow flex-col">
         <h2 class="mb-4 text-3xl font-semibold text-white">{{ showInfo?.name }}</h2>
         <div class="mb-2 flex items-center gap-x-2">
@@ -55,7 +55,20 @@ async function getDetails(id: string) {
         <span class="mt-10 text-base text-white" v-html="showInfo?.summary"></span>
       </div>
     </div>
-    <AppSlider :title="`Cast of ${showInfo?.name}`" :sliderOptions="{ slidesPerView: 9 }">
+    <AppSlider
+      :title="`Cast of ${showInfo?.name}`"
+      :sliderOptions="{
+        slidesPerView: 3,
+        breakpoints: {
+          '640': {
+            slidesPerView: 4
+          },
+          '1024': {
+            slidesPerView: 9
+          }
+        }
+      }"
+    >
       <SwiperSlide v-for="(item, index) in showCast" :key="index" :virtualIndex="index">
         <ShowDetailsCast :item="item" />
       </SwiperSlide>
