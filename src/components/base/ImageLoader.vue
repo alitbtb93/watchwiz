@@ -8,7 +8,7 @@ defineProps<{
 </script>
 
 <template>
-  <div>
+  <div class="h-full">
     <img v-if="src" :src="src" :alt="alt" class="h-auto w-full rounded-md" />
     <div
       v-else

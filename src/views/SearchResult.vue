@@ -6,6 +6,7 @@ import type { SearchResult } from '@/api/types';
 import NoResult from '@/components/pages/searchResult/NoResult.vue';
 import LoadingData from '@/components/base/LoadingData.vue';
 import { useInfiniteScroll } from '@/composables/useInfiniteScroll';
+import BaseError from '@/components/base/BaseError.vue';
 
 const props = defineProps<{
   query: string;
@@ -17,6 +18,7 @@ const page = ref(1);
 const showResults = ref<Array<SearchResult>>([]);
 const loading = ref(false);
 const endOfScroll = ref(null);
+const errorMessage = ref('');
 
 watch(
   () => props.query,
@@ -37,8 +39,10 @@ async function searchShows(query: string) {
     loading.value = true;
     const { data } = await searchShow(query);
     showResults.value = data;
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    if ('message' in error) {
+      errorMessage.value = error.message;
+    }
   } finally {
     loading.value = false;
   }
@@ -48,15 +52,23 @@ async function searchShows(query: string) {
 <template>
   <section class="mx-auto max-w-screen-2xl px-4 py-16">
     <div class="mb-8 text-2xl text-white">Search result for: {{ query }}</div>
-    <div v-if="showResults.length" class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-      <ShowCard
+    <BaseError v-if="errorMessage">
+      {{ errorMessage }}
+    </BaseError>
+    <LoadingData v-if="loading" class="mx-auto w-12" />
+    <div
+      v-else-if="showResults.length"
+      class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5"
+    >
+      <RouterLink
         v-for="{ show } in showResults.slice(0, page * PAGE_SIZE)"
         :key="show.id"
-        :show="show"
-      />
+        :to="`/details/${show.id}`"
+      >
+        <ShowCard :show="show" />
+      </RouterLink>
     </div>
-    <NoResult v-else-if="!loading" />
-    <LoadingData v-if="loading" class="mx-auto w-12" />
+    <NoResult v-else />
     <div ref="endOfScroll"></div>
   </section>
 </template>

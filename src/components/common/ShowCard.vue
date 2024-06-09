@@ -11,7 +11,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="group relative w-full select-none overflow-hidden rounded-md">
+  <div class="group relative h-full w-full select-none overflow-hidden rounded-md">
     <ImageLoader
       :src="show.image?.medium"
       :alt="show.name"

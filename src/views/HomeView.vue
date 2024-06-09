@@ -5,10 +5,12 @@ import type { Show } from '@/api/types';
 import AppSlider from '@/components/app/AppSlider.vue';
 import { SwiperSlide } from 'swiper/vue';
 import ShowCard from '@/components/common/ShowCard.vue';
+import BaseError from '@/components/base/BaseError.vue';
 
 const MINIMUM_NUMBER_OF_SHOWS_PER_GENRE = 7;
 
 const shows = ref<Array<Show>>([]);
+const errorMessage = ref('');
 
 onMounted(() => fetchShows());
 
@@ -51,8 +53,10 @@ async function fetchShows() {
       const { data } = result[i];
       shows.value.push(...data);
     }
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    if ('message' in error) {
+      errorMessage.value = error.message;
+    }
   }
 }
 </script>
@@ -66,5 +70,8 @@ async function fetchShows() {
         </RouterLink>
       </SwiperSlide>
     </AppSlider>
+    <BaseError v-if="errorMessage">
+      {{ errorMessage }}
+    </BaseError>
   </div>
 </template>
