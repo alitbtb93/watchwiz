@@ -18,10 +18,15 @@ export interface Show {
   webChannel: null;
   dvdCountry: null;
   externals: Externals;
-  image: Image;
+  image: Image | null;
   summary: string;
   updated: number;
   _links: Links;
+}
+
+export interface SearchResult {
+  score: number;
+  show: Show;
 }
 
 export interface Links {
