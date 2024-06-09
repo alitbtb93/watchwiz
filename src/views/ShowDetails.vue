@@ -7,7 +7,7 @@ import ShowGenreLabel from '@/components/common/ShowGenreLabel.vue';
 import AppSlider from '@/components/app/AppSlider.vue';
 import { SwiperSlide } from 'swiper/vue';
 import ShowDetailsCast from '@/components/pages/showDetails/ShowDetailsCast.vue';
-import { StarIcon, CalendarIcon } from '@heroicons/vue/24/solid';
+import { StarIcon } from '@heroicons/vue/24/solid';
 
 const props = defineProps({
   id: String
@@ -20,10 +20,13 @@ onMounted(() => props.id && getDetails(props.id));
 
 async function getDetails(id: string) {
   try {
-    const { data } = await getShowInfo(parseInt(id));
-    const { data: castData } = await getShowCast(parseInt(id));
-    showInfo.value = data;
-    showCast.value = castData;
+    const idNum = parseInt(id);
+    const [showInfoResponse, showCastResponse] = await Promise.all([
+      getShowInfo(idNum),
+      getShowCast(idNum)
+    ]);
+    showInfo.value = showInfoResponse.data;
+    showCast.value = showCastResponse.data;
   } catch (error) {
     console.log(error);
   }
