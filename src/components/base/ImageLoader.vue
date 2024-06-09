@@ -1,0 +1,20 @@
+<script setup lang="ts">
+import { PhotoIcon } from '@heroicons/vue/24/solid';
+
+defineProps<{
+  src?: string;
+  alt?: string;
+}>();
+</script>
+
+<template>
+  <div>
+    <img v-if="src" :src="src" :alt="alt" class="h-auto w-full rounded-md" />
+    <div
+      v-else
+      class="flex h-full w-full items-center justify-center rounded-md bg-gray-300 transition group-hover:scale-105"
+    >
+      <PhotoIcon class="size-20" />
+    </div>
+  </div>
+</template>

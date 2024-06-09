@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import type { Show } from '@/api/types';
-import { StarIcon, PhotoIcon } from '@heroicons/vue/24/solid';
+import { StarIcon } from '@heroicons/vue/24/solid';
 import { formatDate } from '@/utils/formatDate';
 import ShowGenreLabel from './ShowGenreLabel.vue';
+import ImageLoader from '../base/ImageLoader.vue';
 
 defineProps<{
   show: Show;
@@ -11,18 +12,11 @@ defineProps<{
 
 <template>
   <div class="group relative w-full select-none overflow-hidden rounded-md">
-    <img
-      v-if="show.image"
+    <ImageLoader
       :src="show.image?.medium"
-      alt=""
-      class="h-auto w-full rounded-md transition duration-300 group-hover:scale-105"
+      :alt="show.name"
+      class="transition duration-300 group-hover:scale-105"
     />
-    <div
-      v-else
-      class="flex h-full w-full items-center justify-center rounded-md bg-gray-300 transition group-hover:scale-105"
-    >
-      <PhotoIcon class="size-20" />
-    </div>
     <div
       class="absolute left-0 top-0 flex h-full w-full flex-col justify-end gap-y-2 rounded-md bg-gradient-to-t from-black to-transparent to-60% p-3"
     >

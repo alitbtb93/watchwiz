@@ -7,9 +7,9 @@ import NoResult from '@/components/pages/searchResult/NoResult.vue';
 import LoadingData from '@/components/base/LoadingData.vue';
 import { useInfiniteScroll } from '@/composables/useInfiniteScroll';
 
-const props = defineProps({
-  query: String
-});
+const props = defineProps<{
+  query: string;
+}>();
 
 const PAGE_SIZE = 15;
 

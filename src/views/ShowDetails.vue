@@ -8,10 +8,11 @@ import AppSlider from '@/components/app/AppSlider.vue';
 import { SwiperSlide } from 'swiper/vue';
 import ShowDetailsCast from '@/components/pages/showDetails/ShowDetailsCast.vue';
 import { StarIcon } from '@heroicons/vue/24/solid';
+import ImageLoader from '@/components/base/ImageLoader.vue';
 
-const props = defineProps({
-  id: String
-});
+const props = defineProps<{
+  id: string;
+}>();
 
 const showInfo = ref<Show | null>(null);
 const showCast = ref<Array<ShowCast>>([]);
@@ -36,7 +37,11 @@ async function getDetails(id: string) {
 <template>
   <section class="mx-auto max-w-screen-2xl px-4 py-16">
     <div class="flex flex-col gap-y-8 md:flex-row md:gap-x-8">
-      <img :src="showInfo?.image?.original" alt="" class="w-60 rounded-md md:w-1/3 lg:w-1/4" />
+      <ImageLoader
+        :src="showInfo?.image?.original"
+        :alt="showInfo?.name"
+        class="w-60 flex-shrink-0 rounded-md md:w-1/3 lg:w-1/4"
+      />
       <div class="flex flex-grow flex-col">
         <h2 class="mb-4 text-3xl font-semibold text-white">{{ showInfo?.name }}</h2>
         <div class="mb-2 flex items-center gap-x-2">

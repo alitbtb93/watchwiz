@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineProps<{
-  genre: String;
+  genre: string;
 }>();
 </script>
 
