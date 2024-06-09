@@ -19,8 +19,8 @@ defineProps<{
     <div
       class="absolute left-0 top-0 flex h-full w-full flex-col justify-end gap-y-2 rounded-md bg-gradient-to-t from-black to-transparent to-60% p-3"
     >
-      <h2 class="truncate pr-4 text-lg leading-none text-white">{{ show.name }}</h2>
-      <div class="flex justify-between text-sm text-gray-300">
+      <h2 class="truncate pr-4 text-base leading-none text-white sm:text-lg">{{ show.name }}</h2>
+      <div class="flex justify-between text-xs text-gray-300 sm:text-sm">
         <span
           >{{ show.premiered?.substring(0, 4) }}
           {{ show.ended && ` - ${show.ended?.substring(0, 4)}` }}</span
@@ -30,7 +30,7 @@ defineProps<{
           <span>{{ show.rating.average }}</span>
         </div>
       </div>
-      <div class="flex flex-wrap gap-2 text-gray-300">
+      <div class="hidden flex-wrap gap-2 text-gray-300 md:flex">
         <span
           v-for="(genre, index) in show.genres"
           :key="index"

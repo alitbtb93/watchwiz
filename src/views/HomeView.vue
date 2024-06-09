@@ -58,18 +58,13 @@ async function fetchShows() {
 </script>
 
 <template>
-  <div class="mx-auto max-w-screen-2xl px-8">
+  <div class="mx-auto max-w-screen-2xl px-4">
     <ShowsSlider
       v-for="(shows, genre) in filteredShowsByGenre"
       :key="genre"
       :title="genre as string"
     >
-      <SwiperSlide
-        v-for="(show, index) in shows"
-        :key="show.id"
-        :virtualIndex="index"
-        class="rounded-md"
-      >
+      <SwiperSlide v-for="(show, index) in shows" :key="show.id" :virtualIndex="index">
         <RouterLink :to="`/details/${show.id}`">
           <ShowCard :show="show" />
         </RouterLink>
