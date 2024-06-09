@@ -59,18 +59,21 @@ async function fetchShows() {
 
 <template>
   <div class="mx-auto max-w-screen-2xl px-8">
-    <section v-for="(shows, genre) in filteredShowsByGenre" :key="genre" class="py-8">
-      <h2 class="mb-4 text-2xl text-white">{{ genre }}</h2>
-      <ShowsSlider>
-        <SwiperSlide
-          v-for="(show, index) in shows"
-          :key="show.id"
-          :virtualIndex="index"
-          class="rounded-md"
-        >
+    <ShowsSlider
+      v-for="(shows, genre) in filteredShowsByGenre"
+      :key="genre"
+      :title="genre as string"
+    >
+      <SwiperSlide
+        v-for="(show, index) in shows"
+        :key="show.id"
+        :virtualIndex="index"
+        class="rounded-md"
+      >
+        <RouterLink :to="`/details/${show.id}`">
           <ShowCard :show="show" />
-        </SwiperSlide>
-      </ShowsSlider>
-    </section>
+        </RouterLink>
+      </SwiperSlide>
+    </ShowsSlider>
   </div>
 </template>

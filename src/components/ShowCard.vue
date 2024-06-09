@@ -8,7 +8,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="group relative w-full overflow-hidden rounded-md">
+  <div class="group relative w-full select-none overflow-hidden rounded-md">
     <img
       :src="show.image.medium"
       alt=""
