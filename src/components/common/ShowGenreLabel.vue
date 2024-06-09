@@ -1,0 +1,9 @@
+<script setup lang="ts">
+defineProps<{
+  genre: String;
+}>();
+</script>
+
+<template>
+  <span class="rounded-md border border-gray-300 px-2 py-1 text-xs text-gray-300">{{ genre }}</span>
+</template>

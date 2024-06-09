@@ -14,7 +14,8 @@ const router = createRouter({
     {
       path: '/details/:id',
       name: 'Show Details',
-      component: ShowDetails
+      component: ShowDetails,
+      props: true
     },
     {
       path: '/search/:query',

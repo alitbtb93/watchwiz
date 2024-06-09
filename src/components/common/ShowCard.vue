@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { Show } from '@/api/types';
 import { StarIcon, PhotoIcon } from '@heroicons/vue/24/solid';
+import { formatDate } from '@/utils/formatDate';
+import ShowGenreLabel from './ShowGenreLabel.vue';
 
 defineProps<{
   show: Show;
@@ -27,21 +29,15 @@ defineProps<{
       <h2 class="truncate pr-4 text-base leading-none text-white sm:text-lg">{{ show.name }}</h2>
       <div class="flex justify-between text-xs text-gray-300 sm:text-sm">
         <span
-          >{{ show.premiered?.substring(0, 4) }}
-          {{ show.ended && ` - ${show.ended?.substring(0, 4)}` }}</span
+          >{{ formatDate(show.premiered) }} {{ show.ended && ` - ${formatDate(show.ended)}` }}</span
         >
         <div v-if="show.rating.average" class="flex items-center gap-x-1">
           <StarIcon class="mb-px size-3 text-yellow-500" />
           <span>{{ show.rating.average }}</span>
         </div>
       </div>
-      <div class="hidden flex-wrap gap-2 text-gray-300 md:flex">
-        <span
-          v-for="(genre, index) in show.genres"
-          :key="index"
-          class="rounded-md border border-gray-300 px-2 py-1 text-xs"
-          >{{ genre }}</span
-        >
+      <div class="hidden flex-wrap gap-2 md:flex">
+        <ShowGenreLabel v-for="(genre, index) in show.genres" :key="index" :genre="genre" />
       </div>
     </div>
   </div>

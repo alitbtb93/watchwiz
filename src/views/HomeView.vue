@@ -2,9 +2,9 @@
 import { ref, onMounted, computed } from 'vue';
 import { getShows } from '@/api/publicApi';
 import type { Show } from '@/api/types';
-import ShowsSlider from '@/components/common/ShowsSlider.vue';
+import AppSlider from '@/components/app/AppSlider.vue';
 import { SwiperSlide } from 'swiper/vue';
-import ShowCard from '@/components/ShowCard.vue';
+import ShowCard from '@/components/common/ShowCard.vue';
 
 const MINIMUM_NUMBER_OF_SHOWS_PER_GENRE = 7;
 
@@ -59,16 +59,12 @@ async function fetchShows() {
 
 <template>
   <div class="mx-auto max-w-screen-2xl px-4">
-    <ShowsSlider
-      v-for="(shows, genre) in filteredShowsByGenre"
-      :key="genre"
-      :title="genre as string"
-    >
+    <AppSlider v-for="(shows, genre) in filteredShowsByGenre" :key="genre" :title="genre as string">
       <SwiperSlide v-for="(show, index) in shows" :key="show.id" :virtualIndex="index">
         <RouterLink :to="`/details/${show.id}`">
           <ShowCard :show="show" />
         </RouterLink>
       </SwiperSlide>
-    </ShowsSlider>
+    </AppSlider>
   </div>
 </template>

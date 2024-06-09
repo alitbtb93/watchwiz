@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import ShowCard from '@/components/ShowCard.vue';
+import ShowCard from '@/components/common/ShowCard.vue';
 import { searchShow } from '@/api/publicApi';
 import type { SearchResult } from '@/api/types';
 import NoResult from '@/components/pages/searchResult/NoResult.vue';
