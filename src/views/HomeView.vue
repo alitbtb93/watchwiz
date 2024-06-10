@@ -16,21 +16,27 @@ const isLoading = ref(false);
 onMounted(() => fetchShows());
 
 const filteredShowsByGenre = computed(() => {
-  const result = shows.value?.reduce((result: { [key: string]: Array<Show> }, current) => {
-    const genre = current.genres[0];
-    if (!genre) {
-      return result;
+  const result: { [key: string]: Show[] } = {};
+  for (let i = 0; i < shows.value.length; i++) {
+    const currentShow = shows.value[i];
+    const currentGenre = shows.value[i].genres[0];
+
+    if (!currentGenre) {
+      continue;
     }
 
-    if (result[genre]) {
-      return { ...result, [genre]: [current, ...result[genre]] };
+    if (result[currentGenre]) {
+      result[currentGenre].push(currentShow);
     } else {
-      return {
-        ...result,
-        [genre]: [current]
-      };
+      result[currentGenre] = [currentShow];
     }
-  }, {});
+  }
+
+  return result;
+});
+
+const sortedShowsByRating = computed(() => {
+  const result = { ...filteredShowsByGenre.value };
 
   for (const key in result) {
     if (result[key].length < MINIMUM_NUMBER_OF_SHOWS_PER_GENRE) {
@@ -67,11 +73,7 @@ async function fetchShows() {
 
 <template>
   <BaseContainer :isLoading="isLoading" :errorMessage="errorMessage">
-    <BaseSlider
-      v-for="(shows, genre) in filteredShowsByGenre"
-      :key="genre"
-      :title="genre as string"
-    >
+    <BaseSlider v-for="(shows, genre) in sortedShowsByRating" :key="genre" :title="genre as string">
       <SwiperSlide v-for="(show, index) in shows" :key="show.id" :virtualIndex="index">
         <RouterLink :to="`/details/${show.id}`">
           <BaseCard :show="show" />
