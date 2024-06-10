@@ -21,7 +21,10 @@ defineProps<{
       space-between="16"
       :navigation="true"
       :modules="[Navigation, Virtual, Mousewheel]"
-      :virtual="true"
+      :virtual="{
+        addSlidesAfter: 4,
+        addSlidesBefore: 4
+      }"
       :grabCursor="true"
       :mousewheel="{
         forceToAxis: true
@@ -34,7 +37,6 @@ defineProps<{
           slidesPerView: 5
         }
       }"
-      :keyboard="true"
       v-bind="sliderOptions"
     >
       <slot />

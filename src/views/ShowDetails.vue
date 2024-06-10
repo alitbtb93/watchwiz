@@ -73,6 +73,10 @@ async function getDetails(id: string) {
       :title="`Cast of ${showInfo?.name}`"
       :sliderOptions="{
         slidesPerView: 3,
+        virtual: {
+          addSlidesAfter: 8,
+          addSlidesBefore: 8
+        },
         breakpoints: {
           '640': {
             slidesPerView: 4
