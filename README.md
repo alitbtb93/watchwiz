@@ -19,17 +19,17 @@
  - utils: contains functionalities like axios instance and format date that do not use any vue related hooks.
  - views: contains our three main routes components.
 
- ## Node version
+## Node version
 Node version that is used in this project is version 20 and you can simply run this command to run the required node version if you have nvm installed.
 
 ```sh
 nvm use
 ```
 
- ## npm version
+## npm version
 10.2.3
 
-## Dependecies
+## Dependencies
 
  - axios: helps to make HTTP requests and handling responses.
  - swiper: lightweight and easy to use carousel.

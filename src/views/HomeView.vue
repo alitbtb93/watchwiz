@@ -53,6 +53,7 @@ async function fetchShows() {
   isLoading.value = true;
   const promises = [];
   try {
+    // Just fetch first 3 pages because the API does not support query by genre and we want to have shows list be sorted based on rating
     for (let i = 1; i <= 3; i++) {
       promises.push(getShows(i));
     }
