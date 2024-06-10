@@ -2,7 +2,7 @@
 import type { Show } from '@/api/types';
 import { StarIcon } from '@heroicons/vue/24/solid';
 import { formatDate } from '@/utils/formatDate';
-import BaseGenreLabel from './BaseGenreLabel.vue';
+import AppGenreLabel from '@/components/app/AppGenreLabel.vue';
 import BaseImageLoader from '../base/BaseImageLoader.vue';
 
 defineProps<{
@@ -36,7 +36,7 @@ defineProps<{
         </div>
       </div>
       <div class="hidden flex-wrap gap-2 md:flex">
-        <BaseGenreLabel v-for="(genre, index) in show.genres" :key="index" :genre="genre" />
+        <AppGenreLabel v-for="(genre, index) in show.genres" :key="index" :genre="genre" />
       </div>
     </div>
   </div>

@@ -3,13 +3,13 @@ import { onMounted, ref } from 'vue';
 import { getShowInfo, getShowCast } from '@/api/publicApi';
 import type { Show, ShowCast } from '@/api/types';
 import { formatDate } from '@/utils/formatDate';
-import BaseGenreLabel from '@/components/base/BaseGenreLabel.vue';
-import BaseSlider from '@/components/base/BaseSlider.vue';
+import AppGenreLabel from '@/components/app/AppGenreLabel.vue';
+import AppSlider from '@/components/app/AppSlider.vue';
 import { SwiperSlide } from 'swiper/vue';
 import ShowDetailsCast from '@/components/pages/showDetails/ShowDetailsCast.vue';
 import { StarIcon } from '@heroicons/vue/24/solid';
 import BaseImageLoader from '@/components/base/BaseImageLoader.vue';
-import BaseContainer from '@/components/base/BaseContainer.vue';
+import AppContainer from '@/components/app/AppContainer.vue';
 
 const props = defineProps<{
   id: string;
@@ -43,7 +43,7 @@ async function getDetails(id: string) {
 </script>
 
 <template>
-  <BaseContainer :is-loading="isLoading" :error-message="errorMessage">
+  <AppContainer :is-loading="isLoading" :error-message="errorMessage">
     <section class="flex flex-col gap-y-8 md:flex-row md:gap-x-8">
       <BaseImageLoader
         :src="showInfo?.image?.original"
@@ -63,12 +63,12 @@ async function getDetails(id: string) {
           </div>
         </div>
         <div class="flex gap-x-2">
-          <BaseGenreLabel v-for="(genre, index) in showInfo?.genres" :key="index" :genre="genre" />
+          <AppGenreLabel v-for="(genre, index) in showInfo?.genres" :key="index" :genre="genre" />
         </div>
         <span class="mt-10 text-base text-white" v-html="showInfo?.summary"></span>
       </div>
     </section>
-    <BaseSlider
+    <AppSlider
       v-if="showCast.length"
       :title="`Cast of ${showInfo?.name}`"
       :sliderOptions="{
@@ -90,6 +90,6 @@ async function getDetails(id: string) {
       <SwiperSlide v-for="(item, index) in showCast" :key="index" :virtualIndex="index">
         <ShowDetailsCast :item="item" />
       </SwiperSlide>
-    </BaseSlider>
-  </BaseContainer>
+    </AppSlider>
+  </AppContainer>
 </template>

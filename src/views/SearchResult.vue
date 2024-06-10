@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import BaseCard from '@/components/base/BaseCard.vue';
+import AppCard from '@/components/app/AppCard.vue';
 import { searchShow } from '@/api/publicApi';
 import type { SearchResult } from '@/api/types';
 import SearchNoResult from '@/components/pages/search/SearchNoResult.vue';
 import { useInfiniteScroll } from '@/composables/useInfiniteScroll';
-import BaseContainer from '@/components/base/BaseContainer.vue';
+import AppContainer from '@/components/app/AppContainer.vue';
 
 const props = defineProps<{
   query: string;
@@ -49,7 +49,7 @@ async function searchShows(query: string) {
 </script>
 
 <template>
-  <BaseContainer :is-loading="isLoading" :error-message="errorMessage">
+  <AppContainer :is-loading="isLoading" :error-message="errorMessage">
     <div class="mb-8 text-2xl text-white">Search result for: {{ query }}</div>
     <div v-if="showResults.length" class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
       <RouterLink
@@ -57,10 +57,10 @@ async function searchShows(query: string) {
         :key="show.id"
         :to="`/details/${show.id}`"
       >
-        <BaseCard :show="show" />
+        <AppCard :show="show" />
       </RouterLink>
     </div>
     <SearchNoResult v-else />
     <div ref="endOfScroll"></div>
-  </BaseContainer>
+  </AppContainer>
 </template>

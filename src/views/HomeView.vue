@@ -2,10 +2,10 @@
 import { ref, onMounted, computed } from 'vue';
 import { getShows } from '@/api/publicApi';
 import type { Show } from '@/api/types';
-import BaseSlider from '@/components/base/BaseSlider.vue';
+import AppSlider from '@/components/app/AppSlider.vue';
 import { SwiperSlide } from 'swiper/vue';
-import BaseCard from '@/components/base/BaseCard.vue';
-import BaseContainer from '@/components/base/BaseContainer.vue';
+import AppCard from '@/components/app/AppCard.vue';
+import AppContainer from '@/components/app/AppContainer.vue';
 
 const MINIMUM_NUMBER_OF_SHOWS_PER_GENRE = 7;
 
@@ -72,13 +72,13 @@ async function fetchShows() {
 </script>
 
 <template>
-  <BaseContainer :isLoading="isLoading" :errorMessage="errorMessage">
-    <BaseSlider v-for="(shows, genre) in sortedShowsByRating" :key="genre" :title="genre as string">
+  <AppContainer :isLoading="isLoading" :errorMessage="errorMessage">
+    <AppSlider v-for="(shows, genre) in sortedShowsByRating" :key="genre" :title="genre as string">
       <SwiperSlide v-for="(show, index) in shows" :key="show.id" :virtualIndex="index">
         <RouterLink :to="`/details/${show.id}`">
-          <BaseCard :show="show" />
+          <AppCard :show="show" />
         </RouterLink>
       </SwiperSlide>
-    </BaseSlider>
-  </BaseContainer>
+    </AppSlider>
+  </AppContainer>
 </template>

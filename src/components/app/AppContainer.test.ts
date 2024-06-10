@@ -1,10 +1,10 @@
 import { mount } from '@vue/test-utils';
 import { describe, it } from 'vitest';
-import BaseContainer from './BaseContainer.vue';
+import AppContainer from './AppContainer.vue';
 
-describe('BaseContainer component test', () => {
+describe('AppContainer component test', () => {
   it('should render loading state when isLoading is true', () => {
-    const wrapper = mount(BaseContainer, {
+    const wrapper = mount(AppContainer, {
       props: { isLoading: true }
     });
     expect(wrapper.find('[data-testId=loading-state]').exists()).toBeTruthy();
@@ -13,7 +13,7 @@ describe('BaseContainer component test', () => {
   it('should render error message when isLoading is false and there is a error message', () => {
     const errorMessage = 'Test error message';
     const content = 'Test content';
-    const wrapper = mount(BaseContainer, {
+    const wrapper = mount(AppContainer, {
       props: { errorMessage: errorMessage, isLoading: false },
       slots: { default: content }
     });
@@ -24,7 +24,7 @@ describe('BaseContainer component test', () => {
 
   it('should render content when isLoading is false and there is no error message', () => {
     const content = 'Test content';
-    const wrapper = mount(BaseContainer, {
+    const wrapper = mount(AppContainer, {
       props: { isLoading: false },
       slots: { default: content }
     });

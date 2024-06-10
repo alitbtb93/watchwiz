@@ -1,12 +1,12 @@
 import { shallowMount } from '@vue/test-utils';
 import { describe, it } from 'vitest';
-import BaseCard from './BaseCard.vue';
+import AppCard from './AppCard.vue';
 import { showMock } from '@/mocks/showMock';
 import { formatDate } from '@/utils/formatDate';
 
-describe('BaseCard component test', () => {
+describe('AppCard component test', () => {
   it('should show information based on show info', () => {
-    const wrapper = shallowMount(BaseCard, {
+    const wrapper = shallowMount(AppCard, {
       props: {
         show: showMock
       }
