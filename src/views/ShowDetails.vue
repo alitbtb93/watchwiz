@@ -44,7 +44,7 @@ async function getDetails(id: string) {
 
 <template>
   <BaseContainer :is-loading="isLoading" :error-message="errorMessage">
-    <div class="flex flex-col gap-y-8 md:flex-row md:gap-x-8">
+    <section class="flex flex-col gap-y-8 md:flex-row md:gap-x-8">
       <BaseImageLoader
         :src="showInfo?.image?.original"
         :alt="showInfo?.name"
@@ -67,7 +67,7 @@ async function getDetails(id: string) {
         </div>
         <span class="mt-10 text-base text-white" v-html="showInfo?.summary"></span>
       </div>
-    </div>
+    </section>
     <BaseSlider
       v-if="showCast.length"
       :title="`Cast of ${showInfo?.name}`"

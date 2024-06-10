@@ -1,5 +1,5 @@
 <template>
-  <div class="min-w-10">
+  <div class="min-w-10" data-testId="loading-state">
     <svg
       aria-hidden="true"
       class="h-full w-full animate-spin fill-blue-600 text-gray-400 dark:text-gray-600"
