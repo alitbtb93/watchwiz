@@ -20,12 +20,17 @@ defineProps<{
     <div
       class="absolute left-0 top-0 flex h-full w-full flex-col justify-end gap-y-2 rounded-md bg-gradient-to-t from-black to-transparent to-60% p-3"
     >
-      <h2 class="truncate pr-4 text-base leading-none text-white sm:text-lg">{{ show.name }}</h2>
+      <h2
+        data-testId="show-name"
+        class="truncate pr-4 text-base leading-none text-white sm:text-lg"
+      >
+        {{ show.name }}
+      </h2>
       <div class="flex justify-between text-xs text-gray-300 sm:text-sm">
-        <span
+        <span data-testId="show-dates"
           >{{ formatDate(show.premiered) }} {{ show.ended && ` - ${formatDate(show.ended)}` }}</span
         >
-        <div v-if="show.rating.average" class="flex items-center gap-x-1">
+        <div v-if="show.rating.average" class="flex items-center gap-x-1" data-testId="show-rate">
           <StarIcon class="mb-px size-3 text-yellow-500" />
           <span>{{ show.rating.average }}</span>
         </div>

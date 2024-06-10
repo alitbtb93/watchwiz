@@ -6,10 +6,8 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "types": [
-      "vite/client",
-    ],
-    "moduleResolution":"node"
+    "types": ["vite/client", "vitest/globals"],
+    "moduleResolution": "node"
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/**/*.js"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/**/*.js"]
 }

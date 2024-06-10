@@ -12,6 +12,7 @@ defineProps<{
     <img v-if="src" :src="src" :alt="alt" class="h-auto w-full rounded-md" />
     <div
       v-else
+      data-testId="placeholder-image"
       class="flex h-full w-full items-center justify-center rounded-md bg-gray-300 transition group-hover:scale-105"
     >
       <PhotoIcon class="size-20" />

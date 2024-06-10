@@ -23,9 +23,11 @@ function search() {
       @keydown.enter="search"
       class="w-3/4 flex-grow bg-transparent pl-4 text-sm text-white outline-none group-focus-within:text-black"
     />
-    <MagnifyingGlassIcon
+    <button
       @click="search"
       class="mx-2 size-5 cursor-pointer text-white group-focus-within:text-black"
-    />
+    >
+      <MagnifyingGlassIcon />
+    </button>
   </div>
 </template>

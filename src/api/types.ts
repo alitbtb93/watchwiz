@@ -62,7 +62,7 @@ export interface Person {
   url: string;
   name: string;
   country: Country;
-  birthday: Date;
+  birthday: string;
   deathday: null;
   gender: string;
   image: Image;
@@ -78,7 +78,7 @@ export interface Country {
 
 export interface Links {
   self: Self;
-  previousepisode: PreviousEpisode;
+  previousepisode?: PreviousEpisode;
 }
 
 export interface PreviousEpisode {
