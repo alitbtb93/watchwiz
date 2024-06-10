@@ -13,7 +13,7 @@ defineProps<{
     <div
       v-else
       data-testId="placeholder-image"
-      class="flex h-full w-full items-center justify-center rounded-md bg-gray-300 transition group-hover:scale-105"
+      class="flex h-full min-h-64 w-full items-center justify-center rounded-md bg-gray-300 transition group-hover:scale-105 md:min-h-[inherit]"
     >
       <PhotoIcon class="size-20" />
     </div>

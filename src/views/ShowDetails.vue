@@ -44,11 +44,11 @@ async function getDetails(id: string) {
 
 <template>
   <AppContainer :is-loading="isLoading" :error-message="errorMessage">
-    <section class="flex flex-col gap-y-8 md:flex-row md:gap-x-8">
+    <section class="flex flex-col gap-y-8 md:min-h-96 md:flex-row md:gap-x-8">
       <BaseImageLoader
         :src="showInfo?.image?.original"
         :alt="showInfo?.name"
-        class="w-60 flex-shrink-0 rounded-md md:w-1/3 lg:w-1/4"
+        class="min-h-[inherit] w-60 flex-shrink-0 rounded-md md:w-1/3 lg:w-1/4"
       />
       <div class="flex flex-grow flex-col">
         <h2 class="mb-4 text-3xl font-semibold text-white">{{ showInfo?.name }}</h2>
