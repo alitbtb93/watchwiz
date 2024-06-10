@@ -10,7 +10,7 @@ describe('ImageLoader component test', () => {
     expect(wrapper.find('img').exists()).toBeTruthy();
   });
 
-  it.only('should render placeholder when there is  no src', () => {
+  it('should render placeholder when there is  no src', () => {
     const wrapper = mount(BaseImageLoader, {
       props: { src: undefined }
     });
