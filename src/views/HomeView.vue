@@ -5,12 +5,13 @@ import type { Show } from '@/api/types';
 import BaseSlider from '@/components/base/BaseSlider.vue';
 import { SwiperSlide } from 'swiper/vue';
 import BaseCard from '@/components/base/BaseCard.vue';
-import BaseError from '@/components/base/BaseError.vue';
+import BaseContainer from '@/components/base/BaseContainer.vue';
 
 const MINIMUM_NUMBER_OF_SHOWS_PER_GENRE = 7;
 
 const shows = ref<Array<Show>>([]);
 const errorMessage = ref('');
+const isLoading = ref(false);
 
 onMounted(() => fetchShows());
 
@@ -43,6 +44,7 @@ const filteredShowsByGenre = computed(() => {
 });
 
 async function fetchShows() {
+  isLoading.value = true;
   const promises = [];
   try {
     for (let i = 1; i <= 3; i++) {
@@ -57,12 +59,14 @@ async function fetchShows() {
     if ('message' in error) {
       errorMessage.value = error.message;
     }
+  } finally {
+    isLoading.value = false;
   }
 }
 </script>
 
 <template>
-  <div class="mx-auto max-w-screen-2xl px-4">
+  <BaseContainer :isLoading="isLoading" :errorMessage="errorMessage">
     <BaseSlider
       v-for="(shows, genre) in filteredShowsByGenre"
       :key="genre"
@@ -74,8 +78,5 @@ async function fetchShows() {
         </RouterLink>
       </SwiperSlide>
     </BaseSlider>
-    <BaseError v-if="errorMessage">
-      {{ errorMessage }}
-    </BaseError>
-  </div>
+  </BaseContainer>
 </template>
